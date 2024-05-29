@@ -102,27 +102,18 @@ export default class Three {
     const elapsedTime = this.clock.getElapsedTime();
     const deltaTime = elapsedTime - this.previousTime;
     this.previousTime = elapsedTime;
+
     if (this.zoomReducer < 30) {
       this.zoomReducer = Math.min(this.zoomReducer + deltaTime * 75, 30);
       this.camera.position.set(0, 0, 35 - this.zoomReducer);
     }
-    // if (scrollY != this.prevScroll) {
-    //   this.modelRotation = this.modelRotation + deltaTime * 12;
-    // } else {
-    //   this.modelRotation = this.modelRotation + deltaTime;
-    // }
-    this.modelRotationIncrement = Math.min(deltaTime + Math.abs(scrollY - this.prevScroll) / 100, 0.1);
+    this.modelRotationIncrement = Math.min(deltaTime + Math.abs(scrollY - this.prevScroll) / 100, 0.05);
     this.modelRotation = this.modelRotation + this.modelRotationIncrement;
     if (this.model) {
       this.model.rotation.y = this.modelRotation;
     }
-    console.log(this.modelRotationIncrement);
+
     this.prevScroll = scrollY;
-
-
-    // this.planeMesh.rotation.x = 0.2 * elapsedTime;
-    // this.planeMesh.rotation.y = 0.1 * elapsedTime;
-
     this.renderer.render(this.scene, this.camera);
     requestAnimationFrame(this.render.bind(this));
   }
