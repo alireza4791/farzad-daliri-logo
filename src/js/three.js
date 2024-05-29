@@ -107,7 +107,7 @@ export default class Three {
       this.zoomReducer = Math.min(this.zoomReducer + deltaTime * 75, 30);
       this.camera.position.set(0, 0, 35 - this.zoomReducer);
     }
-    this.modelRotationIncrement = Math.min(deltaTime + Math.abs(scrollY - this.prevScroll) / 100, 0.05);
+    this.modelRotationIncrement = Math.min(deltaTime + Math.abs(scrollY - this.prevScroll) / 100, 0.01);
     this.modelRotation = this.modelRotation + this.modelRotationIncrement;
     if (this.model) {
       this.model.rotation.y = this.modelRotation;
